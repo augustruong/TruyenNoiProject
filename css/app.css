@@ -1,0 +1,12 @@
+@import url("./homepage.css");
+@import url("./input-wrapper.css");
+@import url("./register-form.css");
+@import url("./login-form.css");
+@import url("./auth-screen.css");
+@import url('https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600&family=GFS+Didot&display=swap');
+
+* {
+    font-family: 'Baloo 2', cursive;
+}
+
