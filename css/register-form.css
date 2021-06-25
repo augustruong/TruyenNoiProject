@@ -1,0 +1,31 @@
+.register-form {
+  width: 100%;
+  height: auto;
+  color: #888888;
+}
+
+.register-form .tickbox {
+    font-size: 16px;
+    color: #4f4f4f;
+    margin: 10px 0;
+    text-align: left;
+}
+  
+.register-form .register-btn {
+    width: 70%;
+    max-width: 300px;
+    background: #5379ff;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 25px;
+    border-radius: 100px;
+}
+  
+.register-form .flex-btw {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  

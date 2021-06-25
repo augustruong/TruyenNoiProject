@@ -1,12 +1,16 @@
-@import url("./homepage.css");
+@import url("./home-page.css");
+@import url("./show-list.css");
 @import url("./input-wrapper.css");
 @import url("./register-form.css");
 @import url("./login-form.css");
-@import url("./auth-screen.css");
+@import url("./modal.css");
 @import url('https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600&family=GFS+Didot&display=swap');
 
 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Baloo 2', cursive;
 }
 

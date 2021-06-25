@@ -1,0 +1,69 @@
+.logo {
+    width: 4vw;
+    margin-left: 120px;
+    margin-top: 45px;
+    position: absolute;
+}
+
+.body-illustration {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    position: absolute;
+    background-color: #203C73;
+}
+
+.body-container {
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+.body-text {
+    text-align: center;
+}
+
+p, h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.hello {
+    font-size: 24px; 
+}
+
+.intro {
+    font-size: 18px; 
+    letter-spacing: 0.02em;
+}
+
+h1 {
+    font-family: GFS Didot;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 72px;
+}
+
+button {
+    width: 130px;
+    height: 45px;
+    border-radius: 10px;
+    color: #262626;
+    font-size: 18px;
+    border: none;
+}
+
+.view-now-btn {
+    background: #F4CE48;
+    margin-right: 50px;
+}
+
+.login-btn {
+    background: #FFFFFF;
+}
+
+
+
+
