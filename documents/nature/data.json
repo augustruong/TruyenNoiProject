@@ -1,0 +1,50 @@
+{
+  "nature": {
+    "001": {
+      "audio": "audios/001.mp3",
+      "image": "images/001.jpg",
+      "text": "Living creatures and Nature changing"
+    },
+    "002": {
+      "audio": "audios/002.mp3",
+      "image": "images/002.jpg",
+      "text": "A Seed Grows Up Into A Big Tree"
+    },
+    "003": {
+      "audio": "audios/003.mp3",
+      "image": "images/003.jpg",
+      "text": "On a very hot day, a lion lounged around under the shade of a tree. He yawend: 'This kind of weather really makes me feel sleepy.' The lon was about to fall asleep when he heard one weak voice calling out to him: 'Brother lion! Brother lion!'"
+    },
+    "004": {
+      "audio": "audios/004.mp3",
+      "image": "images/004.jpg",
+      "text": "The lion looked around, but he found no one. 'Who is calling me?' The lion felt weird. 'I am here.' The lion looked around for the strange voice. He finally found out a little seed on his leg."
+    },
+    "005": {
+      "audio": "audios/005.mp3",
+      "image": "images/005.jpg",
+      "text": "'Brother lion, could you shake your body a bit to make me fall on the ground?' The seed pleaded in a soft voice. 'Get away! Don't you see that I am about to go to sleep?' The lion answered unhappily."
+    },
+    "006": {
+      "audio": "audios/006.mp3",
+      "image": "images/006.jpg",
+      "text": "'Please! I need to get into the deep soil layer in order to become a tall and strong tree.' 'How can you grow up into a tall tree? i don't believe it. Look at yourself right now! How tall you can get?' The lion sneered at the seed.'"
+    },
+    "007": {
+      "audio": "audios/007.mp3",
+      "image": "images/007.jpg",
+      "text": "'Brother lion, please do not look down on me. I might get taller than you one day.This is all true. Once I take the root into the ground an absorb sunlight, you will see how tall I can grow.' The little seed asserted but the lion did not want to listen to him anymore"
+    },
+
+    "008": {
+      "audio": "audios/008.mp3",
+      "image": "images/008.jpg",
+      "text": "'So, if I absorb more sunlight like your words, I will be as tall as a giraffe, right> Ha ha...' The lion laughed at the poor seed with disbelief. 'No no, I will also need water and nutrition from the soil.' The little seed explained."
+    },
+    "009": {
+      "audio": "audios/009.mp3",
+      "image": "images/009.jpg",
+      "text": "'Well, how can you drink water from the soil?' 'I have roots. As long as my roots stay within the soil, I will be able to absord water and nutrition that make me grow into a big tree.' Even though the lion still did not believe the seed, he shifted his leg a bit and the little seed fell to ground."
+    }
+  }
+}

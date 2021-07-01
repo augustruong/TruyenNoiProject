@@ -1,0 +1,39 @@
+{
+  "hardworking": {
+    "001": {
+      "audio": "audios/001.mp3",
+      "image": "images/001.jpg",
+      "text": "Hard working and Time management"
+    },
+    "002": {
+      "audio": "audios/002.mp3",
+      "image": "images/002.jpg",
+      "text": "The Lazy Cow"
+    },
+    "003": {
+      "audio": "audios/003.mp3",
+      "image": "images/003.jpg",
+      "text": "A cow and a buffalo lived by a pond. The were neightbors."
+    },
+    "004": {
+      "audio": "audios/004.mp3",
+      "image": "images/004.jpg",
+      "text": "The buffalo worked very hard on this field every day."
+    },
+    "005": {
+      "audio": "audios/005.mp3",
+      "image": "images/005.jpg",
+      "text": "The cow was very lazy. He always dipped himself into the pond all day long."
+    },
+    "006": {
+      "audio": "audios/006.mp3",
+      "image": "images/006.jpg",
+      "text": "When the buffalo was cultivating on his land, the cow told him: 'Brother buffalo cultivation is such a tiring job! Why don't you sink yourself into the water like me?'"
+    },
+    "007": {
+      "audio": "audios/007.mp3",
+      "image": "images/007.jpg",
+      "text": "'I have to prepare for winter. You should also start to prepare food!' Answered the buffalo"
+    }
+  }
+}

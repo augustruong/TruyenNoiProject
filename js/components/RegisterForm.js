@@ -1,7 +1,6 @@
 import InputWrapper from "./InputWrapper.js";
 import { register } from "../models/user.js";
 
-
 function authStateChanged(callback) {
   //dang ky dang nhap dang xuat
   firebase.auth().onAuthStateChanged((user) => {
@@ -28,7 +27,7 @@ $template.innerHTML = `
       <button class="register-btn">Tạo tài khoản</button>
       <div class="flex-btw">
         <div>Bé đã có tài khoản?</div>
-        <a href="#">Đăng nhập</a>
+        <a href="#" class="login-link">Đăng nhập</a> 
       </div>
     </form>
 `;
@@ -43,8 +42,16 @@ export default class RegisterForm extends HTMLElement {
     this.$email = this.querySelector(".email");
     this.$password = this.querySelector(".password");
     this.$passwordConfirmation = this.querySelector(".password-confirmation");
+
+    this.$loginLink = this.querySelector(".login-link");
   }
 
+  reset() {
+    this.$email.setAttribute('error','');
+    this.$password.setAttribute('error','');
+    this.$name.setAttribute('error','');
+    this.$passwordConfirmation.setAttribute('error','');
+  }
 
   connectedCallback() {
     this.$form.onsubmit = async (event) => {
@@ -53,6 +60,33 @@ export default class RegisterForm extends HTMLElement {
       let email = this.$email.value;
       let password = this.$password.value;
       let passwordConfirmation = this.$passwordConfirmation.value;
+
+      //alert("Register successfully");
+      let timerInterval
+          Swal.fire({
+            title: `Chào bạn ${name}`,
+            html: 'Đăng ký tài khoản thành công. Bạn xem truyện vui vẻ nhé!',
+            timer: 5000,
+            didOpen: () => {
+              timerInterval = setInterval(() => {
+                const content = Swal.getHtmlContainer()
+                if (content) {
+                  const b = content.querySelector('b')
+                  if (b) {
+                    b.textContent = Swal.getTimerLeft()
+                  }
+                }
+              }, 100)
+            },
+            willClose: () => {
+              clearInterval(timerInterval)
+            }
+          }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+              console.log('I was closed by the timer')
+            }
+          })
 
       // callback
       let isPassed =
@@ -72,13 +106,20 @@ export default class RegisterForm extends HTMLElement {
       if (isPassed) {
         try {
           await register(name, email, password); // kha nang sinh loi
-          alert("Register successfully");
+
+          //alert("Register successfully");
+          
+
         } catch (error) {
           //xu ly loi
           alert(error.message);
         }
       }
     }
+
+    this.$loginLink.addEventListener('click', () => {
+      document.getElementById('auth-modal').setAttribute('title', 'Đăng nhập');
+  })
   }
 }
 

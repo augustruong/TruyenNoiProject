@@ -1,0 +1,44 @@
+{
+  "patient": {
+    "001": {
+      "audio": "audios/001.mp3",
+      "image": "images/001.jpg",
+      "text": "Learing to be Patient"
+    },
+    "002": {
+      "audio": "audios/002.mp3",
+      "image": "images/002.jpg",
+      "text": "When summer came, a little bear and a kitten went fishing together."
+    },
+    "003": {
+      "audio": "audios/003.mp3",
+      "image": "images/003.jpg",
+      "text": "They sat by the river and expexted fish to come."
+    },
+    "004": {
+      "audio": "audios/004.mp3",
+      "image": "images/004.jpg",
+      "text": "They didn't catch any fish, although they had been waiting for a long time."
+    },
+    "005": {
+      "audio": "audios/005.mp3",
+      "image": "images/005.jpg",
+      "text": "'Why isn't there any fish here?' The kitten anxiously asked."
+    },
+    "006": {
+      "audio": "audios/006.mp3",
+      "image": "images/006.jpg",
+      "text": "'Be quiet! Don't scare the fish away!' Said the little bear."
+    },
+    "007": {
+      "audio": "audios/007.mp3",
+      "image": "images/007.jpg",
+      "text": "The kitten nodded his head and they keep waiting for fish to swallow the bait."
+    },
+    "008": {
+      "audio": "audios/008.mp3",
+      "image": "images/008.jpg",
+      "008": "They continued waiting for a long time but counln't catch any fish. The kitten told the little bear: 'I give up! I am going to play!'"
+    }
+  }
+}

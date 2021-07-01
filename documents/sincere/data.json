@@ -1,0 +1,54 @@
+{
+  "sincere": {
+    "001": {
+      "audio": "audios/001.mp3",
+      "image": "images/001.jpg",
+      "text": "Being sincere and in Harmony"
+    },
+    "002": {
+      "audio": "audios/002.mp3",
+      "image": "images/002.jpg",
+      "text": "The Little Pig Gives Flowers"
+    },
+    "003": {
+      "audio": "audios/003.mp3",
+      "image": "images/003.jpg",
+      "text": "A little pig picked many beautiful flowers for his good friend."
+    },
+    "004": {
+      "audio": "audios/004.mp3",
+      "image": "images/004.jpg",
+      "text": "He held the flowers in his hands and come to see his friend."
+    },
+    "005": {
+      "audio": "audios/005.mp3",
+      "image": "images/005.jpg",
+      "text": "Suddenly, a strong wind blew over and swept away some flowers from his hands."
+    },
+    "006": {
+      "audio": "audios/006.mp3",
+      "image": "images/006.jpg",
+      "text": "He looked at the bunch of flowers in his hand and though: 'Fortunately, there are still some leat.'"
+    },
+    "007": {
+      "audio": "audios/007.mp3",
+      "image": "images/007.jpg",
+      "text": "He keep going with the flowers."
+    },
+    "008": {
+      "audio": "audios/008.mp3",
+      "image": "images/008.jpg",
+      "text": "Unexpectly, he fell heavily to the ground. the flowers also fell. Only some stems and leaves leat."
+    },
+    "009": {
+      "audio": "audios/009.mp3",
+      "image": "images/009.jpg",
+      "text": "He looked at the stems and leaves in his hands and though again: 'Fortunately, there are still some stems and leaves leat!'"
+    },
+    "010": {
+      "audio": "audios/010.mp3",
+      "image": "images/010.jpg",
+      "text": "He continued going with the bunch of stems and leaves."
+    }
+  }
+}

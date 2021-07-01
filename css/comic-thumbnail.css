@@ -1,0 +1,49 @@
+.comic-thumbnail {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 5px;
+  }
+  
+  .comic-thumbnail img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .comic-thumbnail .action {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    opacity: 0;
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .comic-thumbnail:hover .action {
+    opacity: 1;
+    cursor: pointer;
+  }
+  
+  .comic-thumbnail .action .stats > * {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .comic-thumbnail .action .stats i {
+    margin: 10px;
+  }
+  
+  .comic-thumbnail .action .launch-btn {
+    display: inline-block;
+    color: white;
+    border: 1px solid white;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin-top: 10px;
+  }

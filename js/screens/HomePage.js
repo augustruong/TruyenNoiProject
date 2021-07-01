@@ -18,8 +18,8 @@ $template.innerHTML = `
                 </div>
         </div>
 
-        <x-modal id="auth-modal" title="Đăng nhập">
-        </x-modal>
+        <x-modal id="auth-modal" title="Đăng nhập"></x-modal>
+        <x-modal id="auth-modal" title="Đăng nhập"></x-modal>
     </div> 
 `;
 
@@ -28,14 +28,22 @@ export default class HomePage extends HTMLElement {
         super();
         this.appendChild($template.content.cloneNode(true));
 
+        this.$logo = this.querySelector('.logo');
         this.$viewNowBtn =  this.querySelector('.view-now-btn');
         this.$loginBtn =  this.querySelector('.login-btn');
         this.$modal = this.querySelector('x-modal');
     }
 
     connectedCallback() {
+        this.$logo.addEventListener('click', () => {
+            router.navigate('/home');
+        })
         this.$loginBtn.addEventListener('click', () => {
             this.$modal.visible = true;
+            document.getElementById('auth-modal').setAttribute('title', 'Đăng nhập');            
+        }) 
+        this.$viewNowBtn.addEventListener('click', () => {
+            router.navigate('/collection');
         }) 
     }    
 }

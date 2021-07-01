@@ -4,6 +4,13 @@
     margin-top: 45px;
     position: absolute;
 }
+.logo:hover {
+    cursor: pointer;
+}
+
+button:hover {
+    cursor: pointer;
+}
 
 .body-illustration {
     width: 100vw;

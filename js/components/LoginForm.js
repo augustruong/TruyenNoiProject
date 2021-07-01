@@ -44,36 +44,40 @@ export default class LoginForm extends HTMLElement {
     }
 
     connectedCallback() {
-        this.$form.onsubmit = async (event) => {
-          event.preventDefault();
-          let email = this.$email.value;
-          let password = this.$password.value;
+      this.$form.onsubmit = async (event) => {
+        event.preventDefault();
+        let email = this.$email.value;
+        let password = this.$password.value;
     
-          // callback
-          let isPassed =
+        // callback
+        let isPassed =
             this.$email.validate((value) => { return value != "";}, "Invalid email") &
             this.$password.validate((value) => { return value != "";}, "Invalid password"); 
     
-          if (isPassed) {
-            try {
-              await login(email, password); // kha nang sinh loi
-              alert("Login successfully");
-            } catch (error) {
-              //xu ly loi
-              alert(error.message);
-            }
+        if (isPassed) {
+          try {
+            await login(email, password); // kha nang sinh loi
+            alert("Login successfully");
+          } catch (error) {
+            //xu ly loi
+            alert(error.message);
           }
         }
-
-        this.$registerLink.addEventListener('click', () => {
-            //console.log("forgot pw");
-        })
-
-        this.$registerLink.addEventListener('click', () => {
-            console.log("register");
-            document.getElementById('auth-modal').setAttribute('title', 'Đăng ký');
-        })
       }
+
+      this.$registerLink.addEventListener('click', () => {
+        //console.log("forgot pw");
+      })
+
+      this.$registerLink.addEventListener('click', () => {
+          document.getElementById('auth-modal').setAttribute('title', 'Đăng ký');
+      })
+    }
+
+    reset() {
+      this.$email.setAttribute('error','');
+      this.$password.setAttribute('error','');
+    }
 }
 
 window.customElements.define("login-form", LoginForm);

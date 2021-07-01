@@ -1,3 +1,5 @@
+import LoginForm from "./LoginForm.js";
+
 const $template = document.createElement("template");
 $template.innerHTML = `
   <div class="modal-wrapper">
@@ -15,6 +17,8 @@ export default class Modal extends HTMLElement {
       this.appendChild($template.content.cloneNode(true));
       this.$modal = this.querySelector(".modal-wrapper");
       this.$closeBtn = this.querySelector(".close");
+      this.$loginForm = this.querySelector("login-form");
+      this.$registerForm = this.querySelector("register-form");
     }
 
     get title() {
@@ -40,6 +44,9 @@ export default class Modal extends HTMLElement {
     connectedCallback() {
       this.$closeBtn.addEventListener('click', e => {
         this.removeAttribute("visible");
+        //remove invalid
+        this.$loginForm.reset();
+        this.$registerForm.reset();
       });
     }
 
@@ -53,6 +60,7 @@ export default class Modal extends HTMLElement {
         if (newValue == "Đăng nhập") {
           this.querySelector("register-form").style.display = "none";
           this.querySelector("login-form").style.display = "block";
+
         } else if (newValue == "Đăng ký")  {
           this.querySelector("register-form").style.display = "block";
           this.querySelector("login-form").style.display = "none";
