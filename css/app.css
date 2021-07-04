@@ -1,5 +1,7 @@
 @import url("./home-page.css");
+@import url("./collection-page.css");
 @import url("./comic-collection.css");
+@import url("./comic-show.css");
 @import url("./comic-thumbnail.css");
 @import url("./input-wrapper.css");
 @import url("./register-form.css");
@@ -15,3 +17,17 @@
     font-family: 'Baloo 2', cursive;
 }
 
+body{
+    background-color: #203C73;
+}
+
+#logo {
+    width: 3.5vw;
+    margin-left: 120px;
+    margin-top: 45px;
+    position: absolute;
+    z-index: 1;
+}
+#logo:hover {
+    cursor: pointer;
+}

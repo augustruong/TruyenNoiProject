@@ -58,6 +58,8 @@ export default class LoginForm extends HTMLElement {
           try {
             await login(email, password); // kha nang sinh loi
             alert("Login successfully");
+            //dieu huong sang homepage da dang nhap
+
           } catch (error) {
             //xu ly loi
             alert(error.message);

@@ -8,18 +8,10 @@ export async function register(name, email, password) {
     
     //Luu document voi id la uid cua user
 
-    // await firebase.firestore().collection('users').add({ //auto generate id
-    //     name: name,
-    //     status: 'free',
-    //     currentConversation: ''
-    // });
-
     let docId = firebase.auth().currentUser.uid;
     //set = add || update
     await firebase.firestore().collection('users').doc(docId).set({
-        name: name,
-        status: 'free',
-        currentConversation: ''
+        name: name
     });
 }
 
@@ -53,5 +45,11 @@ export async function updateUser(id,data) {
 export async function updateCurrentUser(data) {
     let currentUser = firebase.auth().currentUser;
     await updateUser(currentUser.uid, data);
+}
 
+export function listenCurrentUser(callback) {
+    let currentUser = firebase.auth().currentUser;
+    firebase.firestore().collection('users').doc(currentUser.uid).onSnapshot(response => {
+        callback(getDataFromDoc(response))
+    });
 }

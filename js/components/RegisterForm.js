@@ -61,33 +61,6 @@ export default class RegisterForm extends HTMLElement {
       let password = this.$password.value;
       let passwordConfirmation = this.$passwordConfirmation.value;
 
-      //alert("Register successfully");
-      let timerInterval
-          Swal.fire({
-            title: `Chào bạn ${name}`,
-            html: 'Đăng ký tài khoản thành công. Bạn xem truyện vui vẻ nhé!',
-            timer: 5000,
-            didOpen: () => {
-              timerInterval = setInterval(() => {
-                const content = Swal.getHtmlContainer()
-                if (content) {
-                  const b = content.querySelector('b')
-                  if (b) {
-                    b.textContent = Swal.getTimerLeft()
-                  }
-                }
-              }, 100)
-            },
-            willClose: () => {
-              clearInterval(timerInterval)
-            }
-          }).then((result) => {
-            /* Read more about handling dismissals below */
-            if (result.dismiss === Swal.DismissReason.timer) {
-              console.log('I was closed by the timer')
-            }
-          })
-
       // callback
       let isPassed =
         this.$name.validate((value) => {
@@ -108,7 +81,31 @@ export default class RegisterForm extends HTMLElement {
           await register(name, email, password); // kha nang sinh loi
 
           //alert("Register successfully");
-          
+          let timerInterval
+          Swal.fire({
+            title: `Chào bạn ${name}`,
+            html: 'Đăng ký tài khoản thành công. Bạn xem truyện vui vẻ nhé!',
+            timer: 2000,
+            didOpen: () => {
+              timerInterval = setInterval(() => {
+                const content = Swal.getHtmlContainer()
+                if (content) {
+                  const b = content.querySelector('b')
+                  if (b) {
+                    b.textContent = Swal.getTimerLeft()
+                  }
+                }
+              }, 100)
+            },
+            willClose: () => {
+              clearInterval(timerInterval)
+            }
+          }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+              console.log('I was closed by the timer')
+            }
+          })
 
         } catch (error) {
           //xu ly loi
