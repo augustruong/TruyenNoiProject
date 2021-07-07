@@ -1,0 +1,101 @@
+
+  hr {
+    margin-bottom: 25px;
+    opacity: 0.5;
+  }
+
+  .user-form-wrapper {
+    width: 100%;
+    position: relative;
+  }
+  
+  .info {
+    margin-bottom: 25px;
+    display: flex;
+  }
+
+  .info .avatar {
+    width: 106px;
+    height: 106px;
+    margin-right: 110px;
+    position: relative;
+    border-radius: 50%;
+  }
+  .info img[alt="avt-alt"] {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+  .info .avatar input {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -12px;
+    right: -18px;
+    z-index: 1;
+    opacity: 0;
+  }
+  .info .avatar img[alt="avt-inp"] {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: -12px;
+    right: -18px;
+    z-index: 1;
+    border: 1px solid black;
+    border-radius: 10px;
+  }
+  .info .avatar .exp-pie {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+  }
+  .info .avatar .level {
+    padding: 1px 5px;
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    z-index: 1;
+    border: 1px solid black;
+    border-radius: 50%;
+    font-size: 13px;
+    background-color: #fff;
+  }
+  .info .info-text h2 {
+    margin-bottom: 25px;
+  }
+  
+  .info-details {
+    width: 100%;
+    margin-bottom: 80px;
+  }
+  .info-details h4 {
+    margin-bottom: 20px;
+  }
+  .info-details tr,
+  td {
+    display: flex;
+    height: 40px;
+  }
+  .info-details .td-left {
+    width: 150px;
+  }
+  .info-details img {
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+  }
+  .info-details .date {
+    opacity: 0.8;
+  }
+  
+  #logout {
+    color: #fff;
+    background-color: rgb(255, 78, 78);
+  }
+  

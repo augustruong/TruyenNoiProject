@@ -158,13 +158,20 @@ button:active {
 
 #view-now-btn {
     background: #F4CE48;
-    margin-right: 50px;
+   
 }
 
 #login-btn {
     background: #FFFFFF;
+    margin-left: 50px;
 }
 
+#auth-modal {
+    width: 32%;
+}
 
+#user-modal {
+    width: 50%;
+}
 
 

@@ -1,3 +1,6 @@
+import { moveX, moveY, rotate, random } from "../animation.js";
+import { getCookie } from "../utils.js";
+
 const $template = document.createElement('template');
 $template.innerHTML = `
     <div class="home-page">
@@ -35,7 +38,7 @@ $template.innerHTML = `
         </div>
 
         <x-modal id="auth-modal" title="Đăng nhập"></x-modal>
-        <x-modal id="auth-modal" title="Đăng nhập"></x-modal>
+        <x-modal id="user-modal" title="Thông tin tài khoản"></x-modal>
     </div> 
 `;
 
@@ -46,15 +49,11 @@ export default class HomePage extends HTMLElement {
 
         this.$viewNowBtn =  this.querySelector('#view-now-btn');
         this.$loginBtn =  this.querySelector('#login-btn');
-        this.$modal = this.querySelector('x-modal');
-
-
-        const randomX = random(10, 20);
-        const randomY = random(10, 20);
-        const randomDelay = random(0, 1);
-        const randomTime = random(3, 5);
-        const randomTime2 = random(5, 10);
-        const randomAngle = random(-10, 10);    
+        this.$authModal = this.querySelector('#auth-modal'); 
+        this.$userModal = this.querySelector('#user-modal'); 
+        this.$currentUserId = getCookie('currentUserId');
+        //console.log(this.$currentUserId);
+        
 
         moveX('#planet1', 1);
         moveY('#planet1', -1);
@@ -66,48 +65,20 @@ export default class HomePage extends HTMLElement {
 
         moveX('#bubble', 1);
         moveY('#bubble', -1);
-        rotate('#bubble', 1);
-
-        function rotate(target, direction) {
-            TweenLite.to(target, randomTime2(), {
-                rotation: randomAngle(direction),
-                // delay: randomDelay(),
-                ease: Sine.easeInOut,
-                onComplete: rotate,
-                onCompleteParams: [target, direction * -1]
-            });
-        }
-
-        function moveX(target, direction) {
-            TweenLite.to(target, randomTime(), {
-                x: randomX(direction),
-                ease: Sine.easeInOut,
-                onComplete: moveX,
-                onCompleteParams: [target, direction * -1]
-            });
-        }
-
-        function moveY(target, direction) {
-            TweenLite.to(target, randomTime(), {
-                y: randomY(direction),
-                ease: Sine.easeInOut,
-                onComplete: moveY,
-                onCompleteParams: [target, direction * -1]
-            });
-        }
-
-        function random(min, max) {
-            const delta = max - min;
-            return (direction = 1) => (min + delta * Math.random()) * direction;
-        }
+        rotate('#bubble', 1);        
     }
 
     connectedCallback() {   
         // get cookie userid
         // co user id -> an nut dang nhap, hien ava
+        if (this.$currentUserId != '') {
+            this.$loginBtn.style.display = 'none';
+        } else {
+            this.$loginBtn.style.display = 'inline';
+        }
              
         this.$loginBtn.addEventListener('click', () => {
-            this.$modal.visible = true;
+            this.$authModal.visible = true;
             document.getElementById('auth-modal').setAttribute('title', 'Đăng nhập');            
         }) 
         this.$viewNowBtn.addEventListener('click', () => {
@@ -128,7 +99,7 @@ export default class HomePage extends HTMLElement {
                 transform: `translate3d(${-x / 12}px, ${-y / 12}px, 0)`
             })
             TweenMax.to('#nori', 1, {
-                transform: `translate3d(${x / 40}px, ${y / 60}px, 0)`
+                transform: `translate3d(${-x / 40}px, ${-y / 60}px, 0)`
             })
             TweenMax.to('#path', 1, {
                 transform: `translate3d(${-x / 50}px, ${-y / 50}px, 0)`

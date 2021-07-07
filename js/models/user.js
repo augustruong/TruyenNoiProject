@@ -1,17 +1,21 @@
-import { getDataFromDocs } from "../utils.js";
+import { getDataFromDoc, getDataFromDocs } from "../utils.js";
 
 export async function register(name, email, password) {
     await firebase.auth().createUserWithEmailAndPassword(email,password);
     await firebase.auth().currentUser.updateProfile({
-        displayName: name
+        displayName: name,
+
     });
     
     //Luu document voi id la uid cua user
-
     let docId = firebase.auth().currentUser.uid;
+    
     //set = add || update
     await firebase.firestore().collection('users').doc(docId).set({
-        name: name
+        name: name,
+        exp: 0,
+        level: 0,
+        coin: 0
     });
 }
 

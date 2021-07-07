@@ -57,8 +57,9 @@ export default class LoginForm extends HTMLElement {
         if (isPassed) {
           try {
             await login(email, password); // kha nang sinh loi
-            alert("Login successfully");
-            //dieu huong sang homepage da dang nhap
+            //an Login Form, an nut login
+            document.getElementById('auth-modal').visible = false;
+            document.getElementById('login-btn').style.display = 'none';
 
           } catch (error) {
             //xu ly loi

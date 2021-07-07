@@ -6,6 +6,7 @@
 @import url("./input-wrapper.css");
 @import url("./register-form.css");
 @import url("./login-form.css");
+@import url("./user-form.css");
 @import url("./modal.css");
 @import url('https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600&family=GFS+Didot&display=swap');
@@ -28,6 +29,44 @@ body{
     position: absolute;
     z-index: 1;
 }
+
 #logo:hover {
     cursor: pointer;
 }
+.avatar-thumb:hover {
+    cursor: pointer;
+}
+
+.avatar-thumb {
+    width: 45px;
+    height: 45px;
+    margin-top: 45px;
+    left: 90%;
+    position: fixed;
+    z-index: 100;
+    
+}
+.avatar-thumb img {
+    width: 50px;
+    height: 50px;
+    clip-path: circle(25px at center);
+}
+
+
+/* .avatar-thumb .exp-pie {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+  }
+
+.avatar-thumb .level {
+    padding: 2px 2px;
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    z-index: 1;
+    border: 1px solid black;
+    border-radius: 50%;
+    font-size: 13px;
+    background-color: #fff;
+  } */

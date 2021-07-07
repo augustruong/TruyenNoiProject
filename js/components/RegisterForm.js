@@ -81,7 +81,7 @@ export default class RegisterForm extends HTMLElement {
           await register(name, email, password); // kha nang sinh loi
 
           //alert("Register successfully");
-          let timerInterval
+          let timerInterval;
           Swal.fire({
             title: `Chào bạn ${name}`,
             html: 'Đăng ký tài khoản thành công. Bạn xem truyện vui vẻ nhé!',
@@ -107,6 +107,9 @@ export default class RegisterForm extends HTMLElement {
             }
           })
 
+          //an Form, an nut login
+          document.getElementById('auth-modal').visible = false;
+          document.getElementById('login-btn').style.display = 'none';
         } catch (error) {
           //xu ly loi
           alert(error.message);

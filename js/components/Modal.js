@@ -8,6 +8,7 @@ $template.innerHTML = `
       <span class="close">&times;</span>
       <login-form></login-form>
       <register-form></register-form>
+      <user-form></user-form>
     </div>
   </div>
 `
@@ -19,6 +20,7 @@ export default class Modal extends HTMLElement {
       this.$closeBtn = this.querySelector(".close");
       this.$loginForm = this.querySelector("login-form");
       this.$registerForm = this.querySelector("register-form");
+      this.$userForm = this.querySelector("user-form");
     }
 
     get title() {
@@ -55,15 +57,18 @@ export default class Modal extends HTMLElement {
     }
   
     attributeChangedCallback(name, oldValue, newValue) {
+      this.$loginForm.style.display = "none";
+      this.$registerForm.style.display = "none";
+      this.$userForm.style.display = "none";
+
       if (name == "title") {
         this.querySelector(".title").textContent = newValue;
         if (newValue == "Đăng nhập") {
-          this.querySelector("register-form").style.display = "none";
-          this.querySelector("login-form").style.display = "block";
-
+          this.$loginForm.style.display = "block";
         } else if (newValue == "Đăng ký")  {
-          this.querySelector("register-form").style.display = "block";
-          this.querySelector("login-form").style.display = "none";
+          this.$registerForm.style.display = "block";
+        } else if (newValue == "Thông tin tài khoản") {
+          this.$userForm.style.display = "block";
         }
 
       }
