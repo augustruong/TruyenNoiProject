@@ -1,0 +1,23 @@
+.back-btn {
+    position: absolute;
+    top: 60px;
+    left: 300px;
+    font-size: 1.5rem;
+    color: white;
+}
+  
+.back-btn i {
+    margin: 10px;
+}
+  
+.back-btn:hover {
+    cursor: pointer;
+}
+  
+.comic-container {
+    position: relative;
+    top: 130px;
+    margin: 0 auto;
+    width: 70vw;
+    height: auto;
+}

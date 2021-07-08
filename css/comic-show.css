@@ -1,135 +1,121 @@
-.back-btn {
-  position: absolute;
-  top: 60px;
-  left: 300px;
-  font-size: 1.5rem;
-  color: white;
-}
-
-.back-btn i {
-  margin: 10px;
-}
-
-.back-btn:hover {
-  cursor: pointer;
-}
-
-.audio-container {
-  position: relative;
-  top: 130px;
-  margin: 0 auto;
-  width: 70vw;
-  height: auto;
-}
-
-.comic-content {
+.comic-show {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  transition: opacity 0.4s 0.2s;
 }
 
-.comic-content img {
+.comic-show img {
   width: 30vw;
 }
 
-.music-info h4 {
-  font-size: 1.1rem;
-  color: #5379ff;
+.page {
+  width: 30vw;
+  height: 30vw;
+  background-color: #111111;
+  float: left;
+  margin-bottom: 0.5em;
+  background: left top no-repeat;
+  background-size: cover;
 }
-
-.footer {
-  display: grid;
-  grid-template-columns: 20% 40% 40%;
-  gap: 10px;
-  align-items: center;
-  padding: 10px;
-  background: #444;
-  border-radius: 10px;
+.page:nth-child(even) {
+  clear: both;
 }
-
-.stats {
-  font-size: 1.2rem;
-  display: flex;
-  justify-content: space-around;
+.comic-show {
+  perspective: 250vw;
 }
-
-.tool-bar {
-  font-size: 16px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.view-count i,
-.heart-count i {
-  margin: 10px;
-}
-
-
-.progress-container {
-  background: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 10px 0;
-  height: 4px;
-  width: 100%;
-}
-
-.progress {
-  background-color: #5379ff;
-  border-radius: 5px;
-  height: 100%;
-  width: 0%;
-  transition: width 0.1s linear;
-}
-
-.tool-bar i:hover {
-  cursor: pointer;
-}
-
-#volume {
+.comic-show .pages {
+  width: 60vw;
+  height: 30vw;
   position: relative;
-  display: flex;
-  align-items: center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  border-radius: 4px;
+  /*box-shadow: 0 0 0 1px #e3dfd8;*/
 }
-
-#vol-up {
+.comic-show .page {
+  float: none;
+  clear: none;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  width: 30vw;
+  height: 30vw;
+  transform-origin: 0 0;
+  transition: transform 1.4s;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  user-select: none;
+  background-color: #f0f0f0;
+}
+.comic-show .page:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
   left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.7s;
+  z-index: 2;
 }
-
-#slider {
-  -webkit-appearance: none;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-  background: #777;
-  height: 5px;
-  width: 160px;
-  border-radius: 15px;
-  margin: 8px;
+.comic-show .page:nth-child(odd) {
+  pointer-events: all;
+  transform: rotateY(0deg);
+  right: 0;
+  border-radius: 0 4px 4px 0;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0) 10%
+  );
 }
-
-#slider:hover {
-  opacity: 1;
-  cursor: pointer;
+.comic-show .page:nth-child(odd):hover {
+  transform: rotateY(-15deg);
 }
-
-#slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background: #5379ff;
-  cursor: pointer;
-  border-radius: 10px;
+.comic-show .page:nth-child(odd):hover:before {
+  background: rgba(0, 0, 0, 0.03);
 }
-
-#slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  background: #5379ff;
-  cursor: pointer;
-  border-radius: 10px;
+.comic-show .page:nth-child(odd):before {
+  background: rgba(0, 0, 0, 0);
 }
-
+.comic-show .page:nth-child(even) {
+  pointer-events: none;
+  transform: rotateY(180deg);
+  transform-origin: 100% 0;
+  left: 0;
+  border-radius: 4px 0 0 4px;
+  border-color: black;
+  background-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0) 10%
+  );
+}
+.comic-show .page:nth-child(even):before {
+  background: rgba(0, 0, 0, 0.2);
+}
+.comic-show .page.grabbing {
+  transition: none;
+}
+.comic-show .page.flipped:nth-child(odd) {
+  pointer-events: none;
+  transform: rotateY(-180deg);
+}
+.comic-show .page.flipped:nth-child(odd):before {
+  background: rgba(0, 0, 0, 0.2);
+}
+.comic-show .page.flipped:nth-child(even) {
+  pointer-events: all;
+  transform: rotateY(0deg);
+}
+.comic-show .page.flipped:nth-child(even):hover {
+  transform: rotateY(15deg);
+}
+.comic-show .page.flipped:nth-child(even):hover:before {
+  background: rgba(0, 0, 0, 0.03);
+}
+.comic-show .page.flipped:nth-child(even):before {
+  background: rgba(0, 0, 0, 0);
+}

@@ -3,7 +3,15 @@ import CollectionPage from "./CollectionPage.js";
 const $template = document.createElement('template');
 $template.innerHTML = `
     <div class="comic-page">
-        <comic-show></comic-show>
+        <div class="back-btn">
+        <i class="fas fa-chevron-left"></i><span class="back-text">Back To Collection</span>
+        </div>
+
+        <div class="comic-container">
+            <comic-show></comic-show>
+            <tool-bar></tool-bar>
+        </div>
+        
     </div> 
 `;
 
@@ -12,6 +20,7 @@ export default class ComicPage extends HTMLElement {
         super();
         this.appendChild($template.content.cloneNode(true));      
         
+        this.$backBtn = this.querySelector('.back-btn')
         this.$title = this.querySelector('.title');
 
         // let url = window.location.href.toString();
@@ -40,6 +49,12 @@ export default class ComicPage extends HTMLElement {
             this.$title.innerHTML = newValue;
         }
     }   
+
+    connectedCallback() {
+        this.$backBtn.addEventListener('click', () => {
+            router.navigate(`/collection`);   
+        })
+    }
 }
 
 window.customElements.define('comic-page', ComicPage);

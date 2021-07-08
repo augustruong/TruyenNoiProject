@@ -3,6 +3,7 @@ import CollectionPage from "./screens/CollectionPage.js";
 import ComicPage from "./screens/ComicPage.js";
 import ComicThumbnail from "./components/ComicThumbnail.js";
 import ComicShow from "./components/ComicShow.js";
+import ToolBar from "./components/ToolBar.js";
 import InputWrapper from "./components/InputWrapper.js";
 import RegisterForm from "./components/RegisterForm.js";
 import LoginForm from "./components/LoginForm.js";
