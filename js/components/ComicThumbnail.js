@@ -30,11 +30,9 @@ export default class ComicThumbnail extends HTMLElement {
     attributeChangedCallback(attrName, oldValue, newValue) {
         if (attrName == "title") {
             this.$title = newValue;
-            this.$image.src = `../images/${newValue}/001.jpg`
+            this.$image.src = `../documents/${newValue}/images/001.jpg`
         }
     }
-
-    
 }
 
 window.customElements.define("comic-thumbnail", ComicThumbnail);

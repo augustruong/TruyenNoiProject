@@ -31,11 +31,6 @@ authStateChanged((user) => {
         // set cookie user id = currentUser.uid
         document.querySelector('.avatar-thumb').style.display = 'block';
         setCookie('currentUserId',user.uid)
-        
-        // database.ref('/users/' + user.uid).once('value')
-        // .then(function (snapshot) {
-        //     document.querySelector('.name').innerHTML = `${snapshot.val().Name}`
-        // })
     } else {
         // set cookie user id = {} 
         setCookie('currentUserId','');

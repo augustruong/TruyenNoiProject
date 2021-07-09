@@ -1,17 +1,10 @@
+import { getComicById } from "../models/collection.js";
+
 const $template = document.createElement('template');
 $template.innerHTML =
 `
   <div class="comic-show">
-    <div id="pages" class="pages">
-        <div class="page">
-          <img src="../images/hardworking/001.jpg">
-        </div>
-        <div class="page">
-          <img src="../images/hardworking/002.jpg">
-        </div>
-        <div class="page">
-          <img src="../images/hardworking/003.jpg">
-        </div>
+    <div id="pages" class="pages"> 
     </div>
   </div>
 `
@@ -21,40 +14,60 @@ export default class ComicShow extends HTMLElement {
         super();
         this.appendChild($template.content.cloneNode(true)); 
 
-        // this.$leftPage = this.querySelector('.left-page');
-        // this.$rightPage = this.querySelector('.right-page');
+        let url = window.location.href.toString();
+        let substr = url.substring(url.indexOf('?') + 1,url.length);        
+        let params = new URLSearchParams(substr);
+        let title = params.get("title");
 
-        // let url = window.location.href.toString();
-        // let substr = url.substring(url.indexOf('?') + 1,url.length);        
-        // let params = new URLSearchParams(substr);
-        // let title = params.get("title");
+        this.$pages = this.querySelector('#pages');
 
-        // this.$leftPage.src = `../images/${title}/001.jpg`
-        // this.$rightPage.src = `../images/${title}/002.jpg`
-
-        this.$pages = this.querySelectorAll(".page");
-        console.log(this.$pages.length);
-        
-        for (let i = 0; i < this.$pages.length; i++) {
-          let page = this.$pages[i];
-          if (i % 2 === 0) {
-            page.style.zIndex = this.$pages.length - i;
+       
+        async function getComicPages(id,pages) {
+          //let str = '';
+          let comic = await getComicById(id);
+          for (let i = 0; i < comic.pageNumber; i++) {
+            let newPage = document.createElement('img');
+            newPage.classList.add("page");
+            newPage.src = `../documents/${title}/images/${i+1}.jpg`
+            pages.appendChild(newPage);
+            //str += `<img class="page" src="../documents/${title}/images/${i+1}.jpg">`
           }
+          //pages.innerHTML = str;
+          console.log(pages);
         }
+
+        getComicPages(title,this.$pages);       
+        // let str='';
+        // for (let i = 0; i < 8; i++) {
+        //   str += `<img class="page" src="../documents/${title}/images/${i+1}.jpg">`
+        // }
+        // this.$pages.innerHTML = str;
+
+        console.log(this.$pages);
     }
 
     connectedCallback() {
       document.addEventListener("DOMContentLoaded", function () {
-        for (let i = 0; i < this.$pages.length; i++) {
-          //let page = this.$pages[i];
-          this.$pages[i].pageNum = i + 1;
-          this.$pages[i].onclick = function () {
-            if (this.$pages[i].pageNum % 2 === 0) {
-              this.$pages[i].classList.remove("flipped");
-              this.$pages[i].previousElementSibling.classList.remove("flipped");
+        let pages = document.getElementsByClassName("page");
+        console.log(pages);
+        console.log(pages.length);
+
+        for (let i = 0; i < pages.length; i++) {
+          let page = pages[i];
+          if (i % 2 === 0) {
+            page.style.zIndex = pages.length - i;
+          }
+        }
+
+        for (let i = 0; i < pages.length; i++) {
+          pages[i].pageNum = i + 1;
+          pages[i].onclick = function () {
+            if (this.pageNum % 2 === 0) {
+              this.classList.remove("flipped");
+              this.previousElementSibling.classList.remove("flipped");
             } else {
-              this.$pages[i].classList.add("flipped");
-              this.$pages[i].nextElementSibling.classList.add("flipped");
+              this.classList.add("flipped");
+              this.nextElementSibling.classList.add("flipped");
             }
           };
         }

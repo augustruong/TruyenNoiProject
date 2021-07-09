@@ -1,5 +1,6 @@
 import { moveX, moveY, rotate, random } from "../animation.js";
-import { getCookie } from "../utils.js";
+import { getAllComics } from "../models/collection.js";
+import { getCookie, setCookie } from "../utils.js";
 
 const $template = document.createElement('template');
 $template.innerHTML = `

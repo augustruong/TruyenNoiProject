@@ -1,5 +1,5 @@
 /* COLLECTION */
-.comic-collection {
+#comic-collection {
   display: flex;
   /* flex-wrap: wrap; */
   justify-content: center;
