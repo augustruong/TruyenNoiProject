@@ -1,6 +1,4 @@
-import { getAllComics } from "../models/collection.js";
-import ComicPage from "./ComicPage.js";
-
+import { getAllComics,getComicByTitle } from "../models/comics.js";
 
 const $template = document.createElement('template');
 $template.innerHTML = `
@@ -18,28 +16,30 @@ export default class CollectionPage extends HTMLElement {
         this.appendChild($template.content.cloneNode(true));      
         
         this.$comicCollection = this.querySelector('#comic-collection');
+    }
 
-        async function getCollectionData(collection) {
+    connectedCallback() {
+        async function renderCollection(collection) {
             let str='';
             let response = await getAllComics();
 
-            response.forEach((element) => {
-                str += `<comic-thumbnail title="${element.id}"></comic-thumbnail>`
+            response.forEach((comic) => {
+                str += `<comic-thumbnail title="${comic.id}"></comic-thumbnail>`
             })
             collection.innerHTML = str;
         }
 
-        getCollectionData(this.$comicCollection);
-    }
+        renderCollection(this.$comicCollection);
 
-    
-
-    connectedCallback() {
-        this.$comicCollection.addEventListener('click', (e) => {
+        this.$comicCollection.addEventListener('click', async (e) => {
             if (e.target.tagName == 'DIV') { 
                 this.$chosenTitle = e.target.parentNode.parentNode.title;
-                //console.log(this.$chosenTitle);
-                router.navigate(`/comic?title=${this.$chosenTitle}`);   
+                let comic = await getComicByTitle(this.$chosenTitle);
+                // +1 view
+                let viewCount = ++comic.viewCount;
+                await firebase.firestore().collection('comics').doc(this.$chosenTitle).update({viewCount: viewCount});
+
+                router.navigate(`/comic?title=${this.$chosenTitle}`);  
             }  
         })
     }    

@@ -9,6 +9,7 @@ import RegisterForm from "./components/RegisterForm.js";
 import LoginForm from "./components/LoginForm.js";
 import UserForm from "./components/UserForm.js";
 import Modal from "./components/Modal.js";
+import StatsBar from "./components/StatsBar.js";
 import { authStateChanged } from "./models/user.js";
 
 import "./router.js";
@@ -24,6 +25,10 @@ avatarThumb.addEventListener('click', () => {
     document.getElementById('user-modal').visible = true;
     document.getElementById('user-modal').setAttribute('title', 'Thông tin tài khoản');     
 })
+
+
+let userModal = document.querySelector('#user-modal'); 
+
 
 authStateChanged((user) => {
     //console.log(user);

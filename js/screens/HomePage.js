@@ -1,5 +1,5 @@
 import { moveX, moveY, rotate, random } from "../animation.js";
-import { getAllComics } from "../models/collection.js";
+import { getAllComics } from "../models/comics.js";
 import { getCookie, setCookie } from "../utils.js";
 
 const $template = document.createElement('template');
@@ -39,7 +39,6 @@ $template.innerHTML = `
         </div>
 
         <x-modal id="auth-modal" title="Đăng nhập"></x-modal>
-        <x-modal id="user-modal" title="Thông tin tài khoản"></x-modal>
     </div> 
 `;
 
@@ -51,10 +50,7 @@ export default class HomePage extends HTMLElement {
         this.$viewNowBtn =  this.querySelector('#view-now-btn');
         this.$loginBtn =  this.querySelector('#login-btn');
         this.$authModal = this.querySelector('#auth-modal'); 
-        this.$userModal = this.querySelector('#user-modal'); 
-        this.$currentUserId = getCookie('currentUserId');
-        //console.log(this.$currentUserId);
-        
+        this.$currentUserId = getCookie('currentUserId');        
 
         moveX('#planet1', 1);
         moveY('#planet1', -1);

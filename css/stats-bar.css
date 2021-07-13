@@ -1,0 +1,21 @@
+.stats-bar {
+    max-width: 15vw;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    color: white;
+} 
+.view-count i,.heart-count i {
+    margin: 10px;
+}
+
+.fa-heart:hover {
+    cursor: pointer;
+    color: pink;
+}
+
+.loved {
+    color: pink;
+}
+  

@@ -6,7 +6,8 @@ export async function getAllComics() {
     return data;
 }
 
-export async function getComicById(id) {
-    let response = await firebase.firestore().collection('comics').doc(id).get();
+export async function getComicByTitle(title) {
+    let response = await firebase.firestore().collection('comics').doc(title).get();
     return getDataFromDoc(response);
 }
+

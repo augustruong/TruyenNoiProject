@@ -28,3 +28,10 @@ export function getCookie(name) {
     }
     return null;
 }
+
+export function getTitle() {
+    let url = window.location.href.toString();
+    let substr = url.substring(url.indexOf('?') + 1,url.length);        
+    let params = new URLSearchParams(substr);
+    return params.get("title");
+}

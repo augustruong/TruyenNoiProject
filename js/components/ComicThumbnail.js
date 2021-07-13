@@ -1,14 +1,12 @@
+import { getComicByTitle } from "../models/comics.js";
+import { authStateChanged, listenCurrentUser } from "../models/user.js";
+
 const $template = document.createElement("template");
 $template.innerHTML = `
     <div class="comic-thumbnail">
         <div class='title'></div>
         <img class="comic-image" src="" alt="" />
-        <div class="action">
-            <div class="stats">
-              <i class="fas fa-eye"></i><span class="view-count">100</span>
-              <i class="fas fa-heart"></i><span class="heart-count">10</span>
-            </div>
-        </div>
+        <div class="action"></div>
     </div>
 `;
 
@@ -19,8 +17,9 @@ export default class ComicThumbnail extends HTMLElement {
 
         this.$title = this.querySelector('.title');
         this.$image = this.querySelector('img');
-        this.$viewCount = this.querySelector('.view-count');
-        this.$heartCount = this.querySelector('.heart-count');
+        this.$action = this.querySelector('.action')
+
+        
     }
 
     static get observedAttributes() {
@@ -30,7 +29,8 @@ export default class ComicThumbnail extends HTMLElement {
     attributeChangedCallback(attrName, oldValue, newValue) {
         if (attrName == "title") {
             this.$title = newValue;
-            this.$image.src = `../documents/${newValue}/images/001.jpg`
+            this.$image.src = `../documents/${newValue}/images/1.jpg`
+            this.$action.innerHTML = `<stats-bar title="${this.$title}"></stats-bar>`
         }
     }
 }

@@ -2,12 +2,6 @@ const $template = document.createElement('template');
 $template.innerHTML =
 `
     <div class="tool-bar-wrapper">
-        <div class="stats">
-            <span class="view-count"> <i class="fas fa-eye"></i>1000</span>
-            <span class="heart-count">
-            <i class="fas fa-heart"></i>1000</span>
-        </div>
-
         <div class="audio-container">
             <div class="audio-info">
                 <h4 id="title">Ukelele</h4>
@@ -40,6 +34,10 @@ export default class ToolBar extends HTMLElement {
     constructor() {
         super();
         this.appendChild($template.content.cloneNode(true)); 
+    }
+
+    connectedCallback() {
+        
     }
 }
 
