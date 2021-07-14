@@ -21,7 +21,7 @@ $template.innerHTML = `
         error=""/>
       </input-wrapper>
       <div class="tickbox">
-        <input type="checkbox" id="tickbox1" />
+        <input type="checkbox" class="tickbox1" />
         <label for="tickbox1">Bé hứa sẽ chăm ngoan học giỏi</label>
       </div>
       <button class="register-btn">Tạo tài khoản</button>

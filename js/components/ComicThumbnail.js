@@ -29,7 +29,7 @@ export default class ComicThumbnail extends HTMLElement {
     attributeChangedCallback(attrName, oldValue, newValue) {
         if (attrName == "title") {
             this.$title = newValue;
-            this.$image.src = `../documents/${newValue}/images/1.jpg`
+            this.$image.src = `../documents/${newValue}/images/001.jpg`
             this.$action.innerHTML = `<stats-bar title="${this.$title}"></stats-bar>`
         }
     }

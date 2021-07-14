@@ -134,8 +134,6 @@ h1 {
 }
 
 button {
-    width: 130px;
-    height: 45px;
     border-radius: 10px;
     color: #262626;
     font-size: 18px;
@@ -158,12 +156,15 @@ button:active {
 
 #view-now-btn {
     background: #F4CE48;
-   
+    width: 130px;
+    height: 45px;
 }
 
 #login-btn {
     background: #FFFFFF;
     margin-left: 50px;
+    width: 130px;
+    height: 45px;
 }
 
 #auth-modal {
