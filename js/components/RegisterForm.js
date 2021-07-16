@@ -21,8 +21,8 @@ $template.innerHTML = `
         error=""/>
       </input-wrapper>
       <div class="tickbox">
-        <input type="checkbox" class="tickbox1" />
-        <label for="tickbox1">Bé hứa sẽ chăm ngoan học giỏi</label>
+        <input type="checkbox" id="confirm-tickbox" />
+        <label for="confirm-tickbox">Bé hứa sẽ chăm ngoan học giỏi</label>
       </div>
       <button class="register-btn">Tạo tài khoản</button>
       <div class="flex-btw">
@@ -42,6 +42,7 @@ export default class RegisterForm extends HTMLElement {
     this.$email = this.querySelector(".email");
     this.$password = this.querySelector(".password");
     this.$passwordConfirmation = this.querySelector(".password-confirmation");
+    this.$confirmTickbox = this.querySelector("#confirm-tickbox");
 
     this.$loginLink = this.querySelector(".login-link");
   }
@@ -75,6 +76,12 @@ export default class RegisterForm extends HTMLElement {
         this.$passwordConfirmation.validate((value) => {
           return value != "" && value == password;
         }, "Invalid passsword confirmation");
+        
+
+        isPassed &= this.$confirmTickbox.checked;
+        if (!this.$confirmTickbox.checked) {
+          alert('Please check the box~')
+        }
 
       if (isPassed) {
         try {

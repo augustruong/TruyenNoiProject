@@ -36,58 +36,56 @@ export default class StatsBar extends HTMLElement {
             viewCount.innerHTML = `${comic.viewCount}`;
             heartCount.innerHTML = `${comic.heartCount}`;
         }
+        renderStats(this.$title,this.$viewCount,this.$heartCount);
 
         //check favorite
         authStateChanged((user) => {
             if (user) {
+                let currentUser = firebase.auth().currentUser;
+                this.$currentUserId = currentUser.uid;
+
                 listenCurrentUser((user) => {
                     if (user.favorite.includes(`${this.$title}`)) {
                         this.$heart.classList.add('loved');
-                    }
-                    
-                    renderStats(this.$title,this.$viewCount,this.$heartCount);
+                    }  
                 })
-                
-            }
-        })
-
-        //get userUid
-        authStateChanged((user)=> {
-            if (user) {
-                let currentUser = firebase.auth().currentUser;
-                this.$currentUserId = currentUser.uid;
-            }
-        })
-
-        this.$heart.addEventListener('click', async() => {
-            let comic = await getComicByTitle(this.$title);
-            let usersRef = await firebase.firestore().collection('users').doc(this.$currentUserId);
-            
-            let comicsRef = await firebase.firestore().collection('comics').doc(this.$title);
-            let heartCount; 
-            if (this.$heart.classList.contains('loved')) {
-                // --love
-                this.$heart.classList.remove('loved');
-                heartCount = --comic.heartCount;
-
-                //remove fromfavorite of user
-                usersRef.update({
-                    favorite: firebase.firestore.FieldValue.arrayRemove(`${this.$title}`)
-                });
-
             } else {
-                // ++love
-                this.$heart.classList.add('loved');
-                heartCount = ++comic.heartCount;
 
-                //add to favorite of user
-                usersRef.update({
-                    favorite: firebase.firestore.FieldValue.arrayUnion(`${this.$title}`)
-                });
             }
-            console.log(heartCount);
-            this.$heartCount.innerHTML = `${heartCount}`
-            comicsRef.update({heartCount: heartCount});
+        })
+        this.$heart.addEventListener('click', async() => {
+            if (this.$currentUserId) {
+                let comic = await getComicByTitle(this.$title);
+                let usersRef = await firebase.firestore().collection('users').doc(this.$currentUserId);
+                
+                let comicsRef = await firebase.firestore().collection('comics').doc(this.$title);
+                let heartCount; 
+                if (this.$heart.classList.contains('loved')) {
+                    // --love
+                    this.$heart.classList.remove('loved');
+                    heartCount = --comic.heartCount;
+    
+                    //remove fromfavorite of user
+                    usersRef.update({
+                        favorite: firebase.firestore.FieldValue.arrayRemove(`${this.$title}`)
+                    });
+    
+                } else {
+                    // ++love
+                    this.$heart.classList.add('loved');
+                    heartCount = ++comic.heartCount;
+    
+                    //add to favorite of user
+                    usersRef.update({
+                        favorite: firebase.firestore.FieldValue.arrayUnion(`${this.$title}`)
+                    });
+                }
+                this.$heartCount.innerHTML = `${heartCount}`
+                comicsRef.update({heartCount: heartCount});
+            } else {
+                alert('Quay lại trang chủ đăng nhập đi rồi mới thích được')
+            }
+            
         })
     }
 }

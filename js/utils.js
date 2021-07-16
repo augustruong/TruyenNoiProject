@@ -35,3 +35,17 @@ export function getTitle() {
     let params = new URLSearchParams(substr);
     return params.get("title");
 }
+
+export function play(audioContainer,audio,playBtn) {
+    audioContainer.classList.add("play");
+    playBtn.querySelector("i.fas").classList.remove("fa-play");
+    playBtn.querySelector("i.fas").classList.add("fa-pause");
+    audio.play();
+}
+
+export function pause(audioContainer,audio,playBtn) {
+    audioContainer.classList.remove("play");
+    playBtn.querySelector("i.fas").classList.add("fa-play");
+    playBtn.querySelector("i.fas").classList.remove("fa-pause");
+    audio.pause();
+}

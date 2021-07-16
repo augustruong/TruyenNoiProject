@@ -16,8 +16,8 @@ $template.innerHTML = `
     
         <div class="flex-btw">
             <div class="tickbox">
-                <input type="checkbox" class="tickbox1" />
-                <label for="tickbox1">Nhớ tui</label>
+                <input type="checkbox" id="rmb-tickbox" />
+                <label for="rmb-tickbox">Nhớ tui</label>
             </div>
             <a href="#">Quên mật khẩu?</a>
         </div>

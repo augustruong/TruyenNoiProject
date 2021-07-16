@@ -24,8 +24,7 @@ export default class ComicPage extends HTMLElement {
 
         this.$comicContainer.innerHTML = `
             <stats-bar title="${this.$title}"></stats-bar>
-            <comic-show></comic-show>
-            <tool-bar title="${this.$title}"></tool-bar>`;
+            <comic-show></comic-show>`
     } 
 
     connectedCallback() {
