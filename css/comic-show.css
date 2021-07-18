@@ -1,7 +1,7 @@
 .comic-show {
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   transition: opacity 0.4s 0.2s;
 }
 

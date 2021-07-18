@@ -16,9 +16,13 @@
   
 .comic-container {
     position: relative;
-    top: 130px;
+    top: 115px;
     margin: 0 auto;
-    width: 70vw;
+    width: 60vw;
     height: auto;
 }
 
+.comic-container > stats-bar > .stats-bar {
+    margin-left: auto;
+    margin-right: 0;
+}

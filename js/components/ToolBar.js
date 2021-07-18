@@ -29,9 +29,7 @@ $template.innerHTML =
 
         <div class="tool-bar-items">
             <div id="timestamp"></div>
-            <button id="expand-btn">
-            <i class="fas fa-expand"></i>
-            </button>
+            
         </div>
     </div>
 `;

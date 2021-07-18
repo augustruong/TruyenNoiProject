@@ -6,6 +6,7 @@ $template.innerHTML =`
   <div class="comic-show">
     <div id="pages" class="pages"> 
     </div>
+    <audio id="flipping-sound" src="../audio/page-flip.mp3"></audio>
   </div>
 
   <tool-bar id="toolBar"></tool-bar>
@@ -19,7 +20,7 @@ export default class ComicShow extends HTMLElement {
         this.$title = getTitle();
         this.$toolBar = this.querySelector('#toolBar');
         this.$toolBar.setAttribute('title',this.$title);
-        
+       
 
         this.$pages = this.querySelector('#pages');
     }
@@ -30,6 +31,7 @@ export default class ComicShow extends HTMLElement {
         let playBtn = document.querySelector("#play-btn");
         let audio = document.querySelector('#audio');
         let timestamp = document.querySelector('#timestamp');
+        let flippingSound = document.querySelector('#flipping-sound');
 
         let comic = await getComicByTitle(title);
         for (let i = 0; i < comic.pageNumber; i++) {
@@ -42,13 +44,14 @@ export default class ComicShow extends HTMLElement {
         }
 
         //play the first page
-        
-        audio.src = `../documents/${title}/audios/001.mp3`;
-        play(audioContainer, audio, playBtn);
-        audio.onended = function() {
-          pause(audioContainer, audio, playBtn);
-        }
-        
+        setTimeout(()=>{
+          audio.src = `../documents/${title}/audios/001.mp3`;
+          play(audioContainer, audio, playBtn);
+          audio.onended = function() {
+            pause(audioContainer, audio, playBtn);
+          }
+        },1000);
+                
         //flip pages
         pages = document.getElementsByClassName("page");
 
@@ -58,11 +61,16 @@ export default class ComicShow extends HTMLElement {
             page.style.zIndex = comic.pageNumber - i;
           }
         }
-
+        
         for (let i = 0; i < pages.length; i++) {
           pages[i].pageNum = i + 1;
           pages[i].onclick = function () {
+            //Flipping book sound effect
+            flippingSound.play();
+            audio.pause();
+
             let audioFiles = [];
+            
             if (this.pageNum % 2 === 0) {
               if (this.pageNum == 2) {
                 audioFiles.push(`../documents/${title}/audios/001.mp3`);
@@ -78,23 +86,26 @@ export default class ComicShow extends HTMLElement {
               this.classList.add("flipped");
               this.nextElementSibling.classList.add("flipped");
             }
+            
+            setTimeout(()=>{
+              //play
+              let i = 0;
+              // once the player ends, play the next one
+              audio.onended = function() {
+                i++;
+                  if (i >= audioFiles.length) {
+                      // end 
+                      pause(audioContainer, audio, playBtn);
+                      return;
+                  }
+                audio.src = audioFiles[i];
+                play(audioContainer, audio, playBtn);
+              };
 
-            //play
-            let i = 0;
-            // once the player ends, play the next one
-            audio.onended = function() {
-              i++;
-                if (i >= audioFiles.length) {
-                    // end 
-                    pause(audioContainer, audio, playBtn);
-                    return;
-                }
               audio.src = audioFiles[i];
               play(audioContainer, audio, playBtn);
-            };
-
-            audio.src = audioFiles[i];
-            play(audioContainer, audio, playBtn);
+            },1000);
+            
           };
         }
       }
@@ -105,4 +116,3 @@ export default class ComicShow extends HTMLElement {
 
 window.customElements.define('comic-show', ComicShow);
 
- 

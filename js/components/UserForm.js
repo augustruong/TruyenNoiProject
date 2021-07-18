@@ -13,7 +13,7 @@ $template.innerHTML = `
       <img id="avatar-img" src="" alt="avt-alt" />
       <div>
         <img src="images/icon/icons8_camera.ico" alt="avt-inp" />
-        <input type="file" />
+        <input id="upload-avt" type="file" />
       </div>
       <canvas id="exp-pie"></canvas>
       <div class="level"></div>
@@ -38,6 +38,7 @@ $template.innerHTML = `
           <img
             id="name-edit"
             class="edit"
+            name=""
             src="images/icon/icons8_edit.ico"
             alt="edit"
           />
@@ -50,6 +51,7 @@ $template.innerHTML = `
           <img
             id="email-edit"
             class="edit"
+            name=""
             src="images/icon/icons8_edit.ico"
             alt="edit"
           />
@@ -62,6 +64,7 @@ $template.innerHTML = `
           <img
             id="password-edit"
             class="edit"
+            name=""
             src="images/icon/icons8_edit.ico"
             alt="edit"
           />
@@ -74,7 +77,7 @@ $template.innerHTML = `
           <p id="date">
             (Thay đổi lần cuối ngày <span id="date-modified"></span>)
           </p>
-          <input id="confirm-password" type="text" placeholder="Mật khẩu hiện tại" />
+          <input id="confirm-password" type="password" placeholder="Mật khẩu hiện tại" />
         </td>
       </tr>
       <tr>
@@ -115,9 +118,10 @@ export default class UserForm extends HTMLElement {
   renderUser = (user, currentUser) => {
     this.$getId("avatar-img").src =
       user.avatar || "images/icon/icons8_user.ico";
+    this.$getClass("avatar-thumb")[0].firstElementChild.src =
+      user.avatar || "images/icon/icons8_user.ico";
     this.$getClass("name")[1].innerText = user.name;
     this.$getClass("name")[2].innerText = user.name;
-    console.log(this.$getClass("name"))
     this.$getId("email").innerText = currentUser.email;
     this.$getId("date-modified").innerText = user.dateModified;
     this.$getId("coin").innerText = user.coin;
@@ -132,21 +136,24 @@ export default class UserForm extends HTMLElement {
     let switchTyping = (e) => {
       let id = e.target.id;
       let sortId = id.split("-")[0];
-
       let isEdit = this.$getId(id).alt == "edit" ? false : true;
+
+      if (e.target.name) return;
+      setTimeout(() => (e.target.name = ""), 500);
+      e.target.name = "y";
+
       this.$getId(sortId).innerHTML = isEdit
         ? sortId == "password"
           ? "**********"
-          : user[sortId]
+          : user[sortId == "name" ? "displayName" : sortId]
         : sortId == "password"
         ? `<input id="new-password" class="typing" type="password" placeholder="Mật khẩu mới"/><div></div><input id="reType-new-password" class="typing" type="password" placeholder="Nhập lại mật khẩu mới"/>`
         : `<input id="${sortId + "-change"}" class="typing" type="text"/>`;
-      this.$getId(id).src = `images/icon/icons8_${
-        isEdit ? "edit" : "cancel"
-      }.ico`;
+      this.$getId(id).src = `
+      images/icon/icons8_${isEdit ? "edit" : "cancel"}.ico`;
       this.$getId(id).alt = isEdit ? "edit" : "cancel";
 
-      isEdit ? --inEdit : ++inEdit;
+      isEdit ? ++inEdit : --inEdit;
 
       this.$getId("date").style.display = inEdit ? "none" : "block";
       this.$getId("confirm-password").style.display = inEdit ? "block" : "none";
@@ -160,34 +167,38 @@ export default class UserForm extends HTMLElement {
   activeUpdateEvent = (user) => {
     let borderAlert = (id) => (this.$getId(id).style.border = "1px solid red");
     let resetBorder = (id) => (this.$getId(id).style.border = "none");
+    let getValue = (id) => (this.$getId(id) ? this.$getId(id).value : "");
     let updateUser = () => {
-      let newName = this.$getId("name-change")
-        ? this.$getId("name-change").value
-        : "";
-      let newEmail = this.$getId("email-change")
-        ? this.$getId("email-change").value
-        : "";
+      let newName = getValue("name-change");
+      let newEmail = getValue("email-change");
+      let newPassword = getValue("passwordnew-password");
+      let reTypeNewPassword = getValue("reType-new-password");
+      let confirmPassword = this.$getId("confirm-password").value;
 
-      let newPassword = this.$getId("new-password");
-      let reTypeNewPassword = this.$getId("reType-new-password");
-      if (newPassword != reTypeNewPassword)
-        return borderAlert("reType-new-password");
-      else resetBorder("reType-new-password");
-
-      let confirmPassword = this.$getId("confirm-password");
-      if (confirmPassword != currentUser.password)
-        return borderAlert("confirm-password");
+      if (newPassword)
+        if (newPassword != reTypeNewPassword)
+          return borderAlert("reType-new-password");
+        else resetBorder("reType-new-password");
+      if (!confirmPassword) return borderAlert("confirm-password");
       else resetBorder("confirm-password");
 
       let data = {
         name: newName || user.name,
         email: newEmail || user.email,
         password: newPassword || confirmPassword,
-        dateModified: Date.now(),
+        dateModified: new Date().toDateString(),
       };
       updateCurrentUser(data);
     };
     this.$getId("apply").addEventListener("click", updateUser);
+  };
+
+  activeUploadEvent = () => {
+    let uploadImage = (e) => {
+      let avatarPath = URL.createObjectURL(e.target.files[0]);
+      updateCurrentUser({ avatar: avatarPath });
+    };
+    this.$getId("upload-avt").addEventListener("change", uploadImage);
   };
 
   activeLogoutEvent = () =>
@@ -204,6 +215,7 @@ export default class UserForm extends HTMLElement {
 
       this.activeEditEvent(user);
       this.activeUpdateEvent(user);
+      this.activeUploadEvent();
       this.activeLogoutEvent();
     });
   }
