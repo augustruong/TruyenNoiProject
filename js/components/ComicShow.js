@@ -37,15 +37,15 @@ export default class ComicShow extends HTMLElement {
         for (let i = 0; i < comic.pageNumber; i++) {
           let newPage = document.createElement('img');
           if (i<9) {
-            pages.innerHTML += `<img class="page" src="../documents/${title}/images/00${i+1}.jpg">`
+            pages.innerHTML += `<img class="page" src="./documents/${title}/images/00${i+1}.jpg">`
           } else {
-            pages.innerHTML += `<img class="page" src="../documents/${title}/images/0${i+1}.jpg">`
+            pages.innerHTML += `<img class="page" src="./documents/${title}/images/0${i+1}.jpg">`
           }
         }
 
         //play the first page
         setTimeout(()=>{
-          audio.src = `../documents/${title}/audios/001.mp3`;
+          audio.src = `./documents/${title}/audios/001.mp3`;
           play(audioContainer, audio, playBtn);
           audio.onended = function() {
             pause(audioContainer, audio, playBtn);
@@ -73,16 +73,16 @@ export default class ComicShow extends HTMLElement {
             
             if (this.pageNum % 2 === 0) {
               if (this.pageNum == 2) {
-                audioFiles.push(`../documents/${title}/audios/001.mp3`);
+                audioFiles.push(`./documents/${title}/audios/001.mp3`);
               } else {
-                audioFiles.push(`../documents/${title}/audios/00${this.pageNum-2}.mp3`);
-                audioFiles.push(`../documents/${title}/audios/00${this.pageNum-1}.mp3`);
+                audioFiles.push(`./documents/${title}/audios/00${this.pageNum-2}.mp3`);
+                audioFiles.push(`./documents/${title}/audios/00${this.pageNum-1}.mp3`);
               }
               this.classList.remove("flipped");
               this.previousElementSibling.classList.remove("flipped");
             } else {
-              audioFiles.push(`../documents/${title}/audios/00${this.pageNum+1}.mp3`);
-              audioFiles.push(`../documents/${title}/audios/00${this.pageNum+2}.mp3`);
+              audioFiles.push(`./documents/${title}/audios/00${this.pageNum+1}.mp3`);
+              audioFiles.push(`./documents/${title}/audios/00${this.pageNum+2}.mp3`);
               this.classList.add("flipped");
               this.nextElementSibling.classList.add("flipped");
             }
